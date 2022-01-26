@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Users.ApplicationCore.Entities;
 
 namespace Users.Infrastructure.Data;
 
@@ -15,4 +16,9 @@ public class UsersDbContext : DbContext
         : base(options)
     {
     }
+
+    /// <summary>
+    /// Set of users
+    /// </summary>
+    public DbSet<User> Users => Set<User>();
 }
