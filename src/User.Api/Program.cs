@@ -6,7 +6,10 @@ using Users.Infrastructure.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
+
 builder.Services.AddMediatR(typeof(Program).GetTypeInfo().Assembly);
+
+builder.Services.AddAutoMapper(typeof(Program).GetTypeInfo().Assembly);
 
 builder.Services.AddDbContext<UsersDbContext>(
       options => options.UseCosmos(
