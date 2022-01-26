@@ -1,12 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Users.ApplicationCore.Entities;
+using Users.ApplicationCore.Interfaces;
 
 namespace Users.Infrastructure.Data;
 
 /// <summary>
 /// Users db context
 /// </summary>
-public class UsersDbContext : DbContext
+public class UsersDbContext : DbContext, IUsersDbContext
 {
     /// <summary>
     /// Instantiates a <see cref="UsersDbContext"/>
@@ -17,8 +18,6 @@ public class UsersDbContext : DbContext
     {
     }
 
-    /// <summary>
-    /// Set of users
-    /// </summary>
+    /// <inheritdoc/>
     public DbSet<User> Users => Set<User>();
 }
