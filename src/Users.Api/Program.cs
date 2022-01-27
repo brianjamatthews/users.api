@@ -31,6 +31,12 @@ builder.Services.AddDbContext<IUsersDbContext, UsersDbContext>(
           builder.Configuration["Cosmos:ConnectionString"],
           builder.Configuration["Cosmos:DatabaseName"]));
 
+
+builder.Services.AddHealthChecks()
+    .AddCosmosDb(
+        builder.Configuration["Cosmos:ConnectionString"],
+        builder.Configuration["Cosmos:DatabaseName"]);
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
@@ -49,6 +55,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.MapControllers();
+app.MapHealthChecks("/health");
 
 app.Run();
 
