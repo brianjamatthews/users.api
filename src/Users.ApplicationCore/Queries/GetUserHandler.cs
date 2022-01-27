@@ -42,7 +42,7 @@ public class GetUserHandler : IRequestHandler<GetUserQuery, UserReadModel?>
     public async Task<UserReadModel?> Handle(GetUserQuery request, CancellationToken cancellationToken)
     {
         var user = await _dbContext.Users
-            .Where(user => !string.IsNullOrEmpty(user.EmailAddress) &&
+            .Where(user => user.EmailAddress != null &&
                 user.EmailAddress!.Equals(request.emailAddress, StringComparison.OrdinalIgnoreCase))
             .ProjectTo<UserReadModel>(_mapper.ConfigurationProvider)
             .FirstOrDefaultAsync(cancellationToken);
