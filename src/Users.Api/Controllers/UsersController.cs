@@ -53,7 +53,7 @@ public class UsersController : ControllerBase
         CancellationToken cancellationToken = default)
     {
         var user = await _mediater.Send(command, cancellationToken);
-        return CreatedAtRoute(nameof(GetUser), new { emailAddress = user.emailAddress }, user);
+        return CreatedAtRoute(nameof(GetUser), new { user.emailAddress }, user);
     }
 
     /// <summary>
